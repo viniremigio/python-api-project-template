@@ -3,10 +3,10 @@ version: '3'
 services:
   spark_etl_template:
     build: .
+    ports:
+      - "8000:8000"
     volumes:
-      - ./src/:/app/src/
+      - ./app/:/app/app/
       - ./tests/:/app/tests/
-      - ./input/:/app/input/
-      - ./output/:/app/output/
-      - ./mypy.ini:/app/mypy.ini
+      - ./main.py:/app/main.py
     command: tail -f /dev/null

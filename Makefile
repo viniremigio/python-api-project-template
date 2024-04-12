@@ -17,13 +17,12 @@ lint:
 	make start
 	docker-compose exec $(IMAGE_NAME) poetry run black --check . && \
 	docker-compose exec $(IMAGE_NAME) poetry run flake8 --max-line-length=99 --exclude .git,__pycache__,.venv
-	docker-compose exec $(IMAGE_NAME) poetry run mypy src --allow-untyped-decorators
+	docker-compose exec $(IMAGE_NAME) poetry run mypy app --allow-untyped-decorators
 
 test:
 	make start
 	docker-compose exec $(IMAGE_NAME) poetry run pytest
 
-run_etl:
+run:
 	make start
-	docker-compose run --rm $(IMAGE_NAME) \
-		poetry run python main.py --input=input  --output=output/sample_task --task=sample
+	docker-compose exec $(IMAGE_NAME) poetry run uvicorn main:app --host 0.0.0.0 --reload
