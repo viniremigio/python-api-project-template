@@ -15,7 +15,7 @@ def expected_output():
     )
 
 
-def test_get_recipe():
+def test_get_recipe(expected_output):
     service: RecipeService = RecipeService()
-    recipes: List[Recipe] = service.list_recipes_by_user_id(user_id=1)
+    recipes: List[Recipe] = service.list_recipes_by_user_id(user_id="1")
     assert recipes[0] == expected_output
