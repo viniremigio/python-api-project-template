@@ -8,7 +8,7 @@ class RecipeRepository:
     def __init__(self) -> None:
         self.repo = load_user_database()
 
-    def get_user_recipes(self, user_id) -> Optional[List[Recipe]]:
+    def get_user_recipes(self, user_id: str) -> Optional[List[Recipe]]:
         user: Optional[User] = self.repo.get(user_id)
         recipes = (
             user.recipes if user is not None and hasattr(user, "recipes") else None

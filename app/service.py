@@ -8,6 +8,6 @@ class RecipeService:
     def __init__(self) -> None:
         self.repo = RecipeRepository()
 
-    def list_recipes_by_user_id(self, user_id: int) -> Optional[List[Recipe]]:
+    def list_recipes_by_user_id(self, user_id: str) -> Optional[List[Recipe]]:
         results: Optional[List[Recipe]] = self.repo.get_user_recipes(user_id=user_id)
         return results

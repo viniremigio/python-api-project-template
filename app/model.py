@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -11,4 +11,4 @@ class Recipe(BaseModel):
 
 class User(BaseModel):
     id: int
-    recipes: List[Recipe]
+    recipes: Optional[List[Recipe]]
