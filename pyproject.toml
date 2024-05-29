@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-api-project-template"
+name = "app"
 version = "0.1.0"
 description = "Python API Template"
 authors = ["Tiago Vinicius <vinicius.remigio@gmail.com>"]
