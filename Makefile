@@ -21,7 +21,7 @@ lint:
 
 test:
 	make start
-	docker-compose exec $(IMAGE_NAME) poetry run pytest
+	docker-compose exec $(IMAGE_NAME) poetry run pytest --html=test_report.html
 
 run:
 	make start

@@ -1,0 +1,66 @@
+name: Quality Gate - Build - Deploy
+on:
+    pull_request:
+        types:
+            - opened
+            - ready_for_review
+        branches:
+            - main
+            - feat/**
+            - test/**
+            - fix/**
+    push:
+        branches:
+            - main
+            - feat/**
+            - test/**
+            - fix/**
+    workflow_dispatch:
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
+            - name: Load & Cache Dependencies
+              uses: viniremigio/poetry-cached-action@v1
+            - name: Run Lint
+              run: make lint
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
+            - name: Load & Cache Dependencies
+              uses: viniremigio/poetry-cached-action@v1
+            - name: Run tests
+              id: run-tests
+              run: make test
+            - name: Upload test report
+              if: failure() && steps.run-tests.outcome == 'failure'
+              uses: actions/upload-artifact@v4
+              with:
+                name: test_report
+                path: test_report.html
+    build:
+        needs: [lint, test]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
+            - name: Load & Cache Dependencies
+              uses: viniremigio/poetry-cached-action@v1
+            - name: Run Build
+              run: poetry build --format wheel
+            - name: Upload Artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: dist-files
+                path: |
+                    dist
+                    main.py
+    deploy:
+        needs: [build]
+        uses: ./.github/workflows/deploy.yml
+        with:
+          artifact-name: dist-files
