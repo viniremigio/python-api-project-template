@@ -1,4 +1,5 @@
-IMAGE_NAME=python_api_project_template
+IMAGE_NAME=python-api-project-template
+REGISTRY_HOST=local.registry:5001
 
 .PHONY: shell build format_code lint test run push create/deploy create/service update/deploy update/service
 
