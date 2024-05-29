@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "python-api-project-template"
+name = "app"
 version = "0.1.0"
 description = "Python API Template"
 authors = ["Tiago Vinicius <vinicius.remigio@gmail.com>"]
-package-mode = false
+package-mode = true
 
 [tool.poetry.dependencies]
 python = "~3.10"
@@ -12,9 +12,9 @@ requests = "2.31.0"
 uvicorn = "0.29.0"
 pydantic = "2.7.0"
 
-
 [tool.poetry.dev-dependencies]
 pytest = "^7.2.0"
+pytest-html="^4.1.1"
 black = "^22.3.0"
 flake8 = "^3.9.2"
 mypy = "1.8.0"

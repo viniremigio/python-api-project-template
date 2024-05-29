@@ -1,0 +1,29 @@
+name: Deploy Workflow
+on:
+    workflow_call:
+        inputs:
+          artifact-name:
+            description: Deployable artifact files
+            required: true
+            type: string
+        outputs:
+          result:
+            description: The result of the deployment operation
+            value: ${{ jobs.deploy.outputs.outcome }}
+jobs:
+    deploy:
+        outputs:
+            outcome: ${{ steps.set-result.outputs.step-result }}
+        runs-on: ubuntu-latest
+        steps:
+        - name: Download artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: ${{ inputs.artifact-name }}
+        - name: List files
+          run: ls -la
+        - name: Deploy
+          run: echo "Deploying..."
+        - name: Print Outcome
+          id: set-result
+          run: echo "step-result=Success!" >> $GITHUB_OUTPUT
