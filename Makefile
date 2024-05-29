@@ -18,10 +18,12 @@ lint:
 	poetry run mypy app --allow-untyped-decorators
 
 test:
-	docker run --rm $(IMAGE_NAME) poetry run pytest --html=test_report.html
+	poetry run pytest --html=test_report.html
 
-run:
-	docker run --rm $(IMAGE_NAME) poetry run uvicorn main:app --host 0.0.0.0 --reload
+run: build
+	docker run -p 8000:8000 \
+			   --rm $(IMAGE_NAME) \
+			   poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 push: build
 	docker image tag $(IMAGE_NAME) $(REGISTRY_HOST)/$(IMAGE_NAME)
