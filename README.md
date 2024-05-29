@@ -1,5 +1,7 @@
 # Python API Project Template
 
+![Build Workflow](https://github.com/viniremigio/python-api-project-template/actions/workflows/build.yml/badge.svg)
+
 This project bootstraps a template to create toy Python API.
 
 

@@ -3,7 +3,7 @@ name = "python-api-project-template"
 version = "0.1.0"
 description = "Python API Template"
 authors = ["Tiago Vinicius <vinicius.remigio@gmail.com>"]
-package-mode = false
+package-mode = true
 
 [tool.poetry.dependencies]
 python = "~3.10"
