@@ -12,8 +12,14 @@ This project bootstraps a template to create toy Python API.
 
 Then run `poetry env info -p` to make sure the environment setup was done properly.
 
+## Development
 
-## Commands
+1. For every change in the `pyproject.toml`  run `poetry.lock`
+2. Run `poetry install` to install the dependencies to a new environment
+3. Run `source $(poetry env info --path)/bin/activate` to activate the poetry environment (Tested on MacOS)
+
+
+## Makefile Commands
 - `make format_code`: rewrites source code using *black* and *isort* to keep it in the standard format
 - `make lint`: checks the source code for syntax violations
 - `make test`: Run unit tests 

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-api-deployment
+  labels:
+    name: python-api-deployment
+    app: python-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-api
+  template:
+    metadata:
+      name: python-api
+      labels:
+        app: python-api
+    spec:
+      containers:
+        - name: python-api-project-template
+          image: local.registry:5001/python-api-project-template
+          ports:
+            - containerPort: 8000
+
+
+    
