@@ -20,4 +20,5 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
 - `make run`: FastAPI will be up at http://localhost:8000/
 
 ## Documentation
+- The project OpenAPI is available at http://localhost:8000/docs
 - Further documentation can be placed in the [docs](docs/) folder.

@@ -1,2 +1,6 @@
 __pycache__
 docs/spec.md
+assets
+test_report.html
+.mypy_cache
+.pytest_cache

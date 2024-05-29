@@ -18,7 +18,7 @@ lint:
 	poetry run mypy app --allow-untyped-decorators
 
 test:
-	poetry run pytest --html=test_report.html
+	poetry run pytest --html=tests/report/test_report.html
 
 run: build
 	docker run -p 8000:8000 \
